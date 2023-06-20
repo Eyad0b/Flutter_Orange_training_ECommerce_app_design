@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled1/screens/signup_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:untitled1/screens/welcome_back_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -159,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen()),
+                                  builder: (context) => const WelcomeBackScreen()),
                             );
                           },
                           child: Padding(
