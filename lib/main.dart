@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:untitled1/screens/welcome_screen.dart';
+import 'package:untitled1/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false, // Fix this error [When the keyboard appears, the Flutter widgets resize.]
-      home: WelcomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

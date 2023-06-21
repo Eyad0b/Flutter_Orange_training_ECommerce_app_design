@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:untitled1/screens/complete_profile_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class CompleteProfileScreen extends StatefulWidget {
+  const CompleteProfileScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -33,12 +32,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 alignment: Alignment.center,
                 height: height * .2,
                 padding: const EdgeInsets.only(
-                    top: Checkbox.width / 1.2, bottom: Checkbox.width / 3),
+                    top: Checkbox.width / 2.8, bottom: Checkbox.width),
                 child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Register Account",
+                      "Complete Profile",
                       style: TextStyle(
                         fontSize: 32,
                         color: Colors.black,
@@ -59,9 +58,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               Container(
-                height: height * .536754,
+                height: height * .6,
                 padding: EdgeInsets.only(
-                    top: Checkbox.width * 2,
+                    top: Checkbox.width / 1.85,
                     left: width * .06,
                     right: width * .06),
                 child: Column(
@@ -74,8 +73,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // padding around hint
                           contentPadding: const EdgeInsets.only(
                               left: 35, bottom: 23, top: 23),
-                          hintText: 'Enter your email',
-                          labelText: 'Email',
+                          hintText: 'Enter your first name',
+                          labelText: 'First Name',
                           labelStyle: const TextStyle(
                             fontSize: 17,
                             color: Colors.black45,
@@ -97,11 +96,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // Add icon in right side
                           suffixIcon: Container(
                             padding: const EdgeInsets.only(
-                              right: Checkbox.width * 1.2,
-                            ),
-                            child: SvgPicture.asset(
-                              'assets/icons/Mail.svg',
-                              semanticsLabel: 'Google Logo',
+                                right: Checkbox.width * 1.1),
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: SvgPicture.asset(
+                                'assets/icons/User.svg',
+                                semanticsLabel: 'Google Logo',
+                              ),
                             ),
                           ),
                           hintStyle: const TextStyle(
@@ -132,8 +133,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // padding around hint
                           contentPadding: const EdgeInsets.only(
                               left: 35, bottom: 23, top: 23),
-                          hintText: 'Enter your password',
-                          labelText: 'Password',
+                          hintText: 'Enter your last name',
+                          labelText: 'Last Name',
                           labelStyle: const TextStyle(
                             fontSize: 17,
                             color: Colors.black45,
@@ -153,12 +154,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // Add icon in right side
                           suffixIcon: Container(
                             padding: const EdgeInsets.only(
-                                right: Checkbox.width * 1.2),
+                                right: Checkbox.width * 1.1),
                             child: Padding(
-                              padding: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.all(4.0),
                               child: SvgPicture.asset(
-                                'assets/icons/Lock.svg',
-                                semanticsLabel: 'Google Logo',
+                                'assets/icons/User.svg',
+                                semanticsLabel: 'User Logo',
                               ),
                             ),
                           ),
@@ -187,8 +188,63 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // padding around hint
                           contentPadding: const EdgeInsets.only(
                               left: 35, bottom: 23, top: 23),
-                          hintText: 'Re-enter your password',
-                          labelText: 'Confirm Password',
+                          hintText: 'Enter your phone number',
+                          labelText: 'Phone Number',
+                          labelStyle: const TextStyle(
+                            fontSize: 17,
+                            color: Colors.black45,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "muli",
+                          ),
+                          // Add border around text filed
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(27),
+                            ),
+                            borderSide: BorderSide(
+                                color: Color(0xFFFD7643), width: 2),
+                          ),
+                          // Make labelText visible all time
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          // Add icon in right side
+                          suffixIcon: Container(
+                            padding: const EdgeInsets.only(
+                                right: Checkbox.width * 1.2),
+                            child: Padding(
+                              padding: const EdgeInsets.all(7.0),
+                              child: SvgPicture.asset(
+                                'assets/icons/Phone.svg',
+                                semanticsLabel: 'Phone Logo',
+                              ),
+                            ),
+                          ),
+                          hintStyle: const TextStyle(
+                            color: Colors.black45,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w700,
+                            fontFamily: "muli",
+                          ),
+                          focusedBorder: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30),
+                              ),
+                              borderSide: BorderSide(
+                                  color: Color(0xFFFD7643), width: 2)),
+                        ),
+                        cursorColor: const Color(0xFFFD7643),
+                      ),
+                    ),
+                    const SizedBox(height: Checkbox.width * 1.65),
+                    SizedBox(
+                      height: Checkbox.width * 3.7,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          focusColor: const Color(0xFFFD7643),
+                          // padding around hint
+                          contentPadding: const EdgeInsets.only(
+                              left: 35, bottom: 23, top: 23),
+                          hintText: 'Enter your address',
+                          labelText: 'Address',
                           labelStyle: const TextStyle(
                             fontSize: 17,
                             color: Colors.black45,
@@ -212,8 +268,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: SvgPicture.asset(
-                                'assets/icons/Lock.svg',
-                                semanticsLabel: 'Google Logo',
+                                'assets/icons/Location point.svg',
+                                semanticsLabel: 'Address Logo',
                               ),
                             ),
                           ),
@@ -266,93 +322,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               Container(
-                // color: Colors.purple,
-                height: height * .15,
-                padding: EdgeInsets.only(top: height * .035,bottom: height * .002),
+                height: height * .087,
+                padding: EdgeInsets.only(top: height * .028,bottom: height * .004),
                 alignment: Alignment.center,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: height * .07,
-                      margin: EdgeInsets.only(
-                          right: width * .23, left: width * .23),
-                      alignment: Alignment.bottomCenter,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Material(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                            color: const Color(0xFFF4F5F8),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: SvgPicture.asset(
-                                  'assets/icons/google-icon.svg',
-                                  width: Checkbox.width / 1.3,
-                                  height: Checkbox.width / 1.3,
-                                  semanticsLabel: 'Google Logo',
-                                ),
-                              ),
-                            ),
-                          ),
-                          Material(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                            color: Colors.white,
-                            child: Ink(
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFF4F5F8),
-                                shape: BoxShape.circle,
-                              ),
-                              child: InkWell(
-                                onTap: () {},
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: SvgPicture.asset(
-                                    'assets/icons/facebook-2.svg',
-                                    width: Checkbox.width / 1.2,
-                                    height: Checkbox.width / 1.2,
-                                    semanticsLabel: 'Google Logo',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Material(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20),
-                            ),
-                            color: const Color(0xFFF4F5F8),
-                            child: InkWell(
-                              onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: SvgPicture.asset(
-                                  'assets/icons/twitter.svg',
-                                  width: Checkbox.width / 1.3,
-                                  height: Checkbox.width / 1.3,
-                                  semanticsLabel: 'Google Logo',
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Text(
-                      'By continuing your confirm that you agree',
-                      style: TextStyle(
-                        color: Color(0xFFA6A6A6),
-                        fontWeight: FontWeight.w700,
-                        fontSize: Checkbox.width / 1.5,
-                      ),
-                    ),
-                  ],
+                child: const Text(
+                  textAlign: TextAlign.center,
+                  'By continuing your confirm that you agree\nwith our Term and Condition',
+                  style: TextStyle(
+                    color: Color(0xFFA6A6A6),
+                    fontWeight: FontWeight.w700,
+                    fontSize: Checkbox.width / 1.38,
+                    fontFamily: "muli",
+                  ),
                 ),
               ),
             ],
