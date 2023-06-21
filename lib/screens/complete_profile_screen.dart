@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:untitled1/screens/welcome_back_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({super.key});
@@ -295,7 +296,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const CompleteProfileScreen()),
+                              builder: (context) => const WelcomeBackScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
