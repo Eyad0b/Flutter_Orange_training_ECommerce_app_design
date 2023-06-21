@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
