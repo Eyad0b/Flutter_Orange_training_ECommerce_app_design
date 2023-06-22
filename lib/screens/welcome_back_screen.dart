@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:untitled1/screens/forget_passorwd_screen.dart';
-import 'package:untitled1/screens/home_screen.dart';
+import 'package:untitled1/screens/login_success_screen.dart';
 import 'package:untitled1/screens/signup_screen.dart';
 
 class WelcomeBackScreen extends StatefulWidget {
@@ -239,7 +239,7 @@ class _WelcomeBackScreenState extends State<WelcomeBackScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const HomeScreen()),
+                              builder: (context) => const LogInSuccessScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
