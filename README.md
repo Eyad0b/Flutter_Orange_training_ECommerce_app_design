@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 To install this project, follow these steps:
 
-- Download Flutter: Download the latest stable release of Flutter from the .
+- Download Flutter: Download the latest stable release of Flutter from the [Flutter website](https://docs.flutter.dev/get-started/install).
 
 - Extract the archive: Extract the downloaded archive and place the flutter folder in your desired installation location.
 
@@ -28,7 +28,7 @@ To install this project, follow these steps:
 For example, on macOS or Linux, add the following line to your ~/.bashrc or ~/.zshrc file:
 export PATH="$PATH:[PATH_TO_FLUTTER_GIT_DIRECTORY]/bin"
 
-On Windows, follow this https://docs.flutter.dev/get-started/install/windows#update-your-path.
+On Windows, follow this [Instructions](https://docs.flutter.dev/get-started/install/windows#update-your-path).
 
 To run this project, follow these steps:
 
