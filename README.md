@@ -45,12 +45,6 @@ flutter doctor
  
 I hope this helps! Let me know if you have any questions.
 
-# Usage 
-
-To use this app:
-
-This app under development didn't have use catalogue yet.
-
 # Dependencies
 
 This project requires the following dependencies:
@@ -60,4 +54,18 @@ This project requires the following dependencies:
 -  lottie: ^2.4.0
 -  flutter_native_splash: ^2.3.1
 -  banner_carousel: ^1.2.1
+
+
+# Usage 
+
+To use this app:
+
+This app under development didn't have a completed use catalogue yet.
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_1.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_2.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_3.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_4.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_5.png)
+
 
