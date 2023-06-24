@@ -75,7 +75,7 @@ class _LogInSuccessScreenState extends State<LogInSuccessScreen> {
                 padding: const EdgeInsets.only(top: Checkbox.width),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const HomeScreen()),
