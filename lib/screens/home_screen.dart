@@ -573,9 +573,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         width: Checkbox.width * 1.5,
                                         height: Checkbox.width * 1.5,
-                                        decoration: const ShapeDecoration(
-                                          shape: CircleBorder(),
-                                          color: Color(0xD3E9CACA),
+                                        decoration: ShapeDecoration(
+                                          shape: const CircleBorder(),
+                                          color: heart3IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
                                         ),
                                         child: IconButton(
                                           // color: Colors.red,
@@ -660,9 +660,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         width: Checkbox.width * 1.5,
                                         height: Checkbox.width * 1.5,
-                                        decoration: const ShapeDecoration(
-                                          shape: CircleBorder(),
-                                          color: Color(0xD3E9CACA),
+                                        decoration: ShapeDecoration(
+                                          shape: const CircleBorder(),
+                                          color: heart3IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
                                         ),
                                         child: IconButton(
                                           // color: Colors.red,
@@ -687,7 +687,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.only(
+                        padding:  const EdgeInsets.only(
                           left: Checkbox.width,
                           top: Checkbox.width / 2.5,
                         ),
@@ -715,10 +715,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const SizedBox(
+                                 const SizedBox(
                                   width: Checkbox.width * 8,
                                   child: Text(
-                                    "Glove\nPolyg",
+                                    "Gloves Omega and Polygon joie Kids Bike Helmet",
                                     style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.black,
@@ -735,7 +735,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Text(
+                                       const Text(
                                         "\$36.99",
                                         style: TextStyle(
                                           fontSize: 20,
@@ -747,9 +747,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         width: Checkbox.width * 1.5,
                                         height: Checkbox.width * 1.5,
-                                        decoration: const ShapeDecoration(
-                                          shape: CircleBorder(),
-                                          color: Color(0xD3E9CACA),
+                                        decoration: ShapeDecoration(
+                                          shape: const CircleBorder(),
+                                          color: heart3IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
                                         ),
                                         child: IconButton(
                                           // color: Colors.red,
