@@ -334,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   // color: Colors.red,
                   height: Checkbox.width * 3.1,
-                  padding: const EdgeInsets.only(bottom: Checkbox.width / 1.5),
+                  padding: const EdgeInsets.only(bottom: Checkbox.width / 1.5,left: Checkbox.width,right: Checkbox.width/2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -477,7 +477,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   // color: Colors.red,
                   height: Checkbox.width * 3.1,
                   margin: const EdgeInsets.only(top: Checkbox.width / 2),
-                  padding: const EdgeInsets.only(bottom: Checkbox.width / 1.8),
+                  padding: const EdgeInsets.only(bottom: Checkbox.width / 1.8,left: Checkbox.width,right: Checkbox.width/2),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
