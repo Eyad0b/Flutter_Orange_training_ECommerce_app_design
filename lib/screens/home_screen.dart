@@ -575,7 +575,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: Checkbox.width * 1.5,
                                         decoration: ShapeDecoration(
                                           shape: const CircleBorder(),
-                                          color: heart3IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
+                                          color: heart1IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
                                         ),
                                         child: IconButton(
                                           // color: Colors.red,
@@ -662,7 +662,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         height: Checkbox.width * 1.5,
                                         decoration: ShapeDecoration(
                                           shape: const CircleBorder(),
-                                          color: heart3IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
+                                          color: heart2IsPressed ?  const Color(0xD3E9CACA) : Colors.grey.shade200,
                                         ),
                                         child: IconButton(
                                           // color: Colors.red,
