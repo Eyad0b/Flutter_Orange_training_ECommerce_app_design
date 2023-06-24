@@ -67,5 +67,6 @@ This app under development didn't have a completed use catalogue yet.
 ![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_3.png)
 ![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_4.png)
 ![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_5.png)
-
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_6.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_7.png)
 
