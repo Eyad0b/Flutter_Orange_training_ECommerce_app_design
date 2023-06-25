@@ -54,6 +54,7 @@ This project requires the following dependencies:
 -  lottie: ^2.4.0
 -  flutter_native_splash: ^2.3.1
 -  banner_carousel: ^1.2.1
+-  badges: ^3.1.1
 
 
 # Usage 
@@ -69,4 +70,7 @@ This app under development didn't have a completed use catalogue yet.
 ![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_5.png)
 ![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_6.png)
 ![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_7.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_8.png)
+![App Screen capture](https://github.com/Eyad0b/Flutter_Orange_training_ECommerce_app_design/blob/master/assets/appScreensCapture/img_9.png)
+
 
