@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:badges/badges.dart' as badges;
 
+import 'details/details_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -257,6 +259,93 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemImagePath: "assets/images/Image Popular Product 3.png",
                   heartIsPressed: heart3IsPressed,
                 ),
+            Container(
+              padding: const EdgeInsets.only(
+                left: Checkbox.width,
+                top: Checkbox.width / 2.5,
+              ),
+              child: Column(
+                children: [
+                  Container(
+                    width: Checkbox.width * 8.25,
+                    height: Checkbox.width * 8.25,
+                    padding: const EdgeInsets.all(Checkbox.width),
+                    decoration: ShapeDecoration(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
+                      color: Colors.grey.shade200,
+                    ),
+                    child: const Image(
+                      fit: BoxFit.scaleDown,
+                      image: AssetImage(
+                        "assets/images/Image Popular Product 3.png",
+                      ),
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        width: Checkbox.width * 8,
+                        child: Text(
+                          "Gloves Omega and Polygon joie Kids Bike Helmet",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: "muli",
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(
+                        width: Checkbox.width * 8.5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "\$36.99",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.orange,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "muli",
+                              ),
+                            ),
+                            Container(
+                              width: Checkbox.width * 1.5,
+                              height: Checkbox.width * 1.5,
+                              decoration: ShapeDecoration(
+                                shape: const CircleBorder(),
+                                color: heart1IsPressed
+                                    ? const Color(0xD3E9CACA)
+                                    : Colors.grey.shade200,
+                              ),
+                              child: IconButton(
+                                // color: Colors.red,
+                                onPressed: () {
+                                  setState(() {
+                                    heart1IsPressed = !heart1IsPressed;
+                                  });
+                                },
+                                icon: SvgPicture.asset(
+                                  "assets/icons/Heart Icon_2.svg",
+                                  color: heart1IsPressed ? Colors.red : Colors.grey,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
               ],
             ),
           ),
@@ -366,7 +455,7 @@ class _HomeScreenState extends State<HomeScreen> {
               "See More",
               style: TextStyle(
                 fontSize: 15,
-                color: Colors.black45,
+                color: Colors.black26,
                 fontWeight: FontWeight.bold,
                 fontFamily: "muli",
               ),
@@ -508,13 +597,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: IconButton(
                         // color: Colors.red,
                         onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Details()),
+                          );
                           setState(() {
-                            heartIsPressed = !heartIsPressed;
-                            _buildPopularProductItem(
-                                title: title,
-                                price: price,
-                                itemImagePath: itemImagePath,
-                                heartIsPressed: heartIsPressed);
+                            heartIsPressed ? heartIsPressed = !heartIsPressed : null;
                           });
                         },
                         icon: SvgPicture.asset(
