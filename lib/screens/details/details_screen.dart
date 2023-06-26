@@ -10,7 +10,7 @@ class Details extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade200,
-        body: Body(),
+        body: const Body(),
       ),
     );
   }

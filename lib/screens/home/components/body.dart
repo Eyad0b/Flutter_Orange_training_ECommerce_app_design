@@ -1,127 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:badges/badges.dart' as badges;
 
-import 'details/details_screen.dart';
+import '../../details/details_screen.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Body extends StatefulWidget {
+  const Body({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Body> createState() => _BodyState();
 }
+bool heart1IsPressed = false;
+bool heart2IsPressed = false;
+bool heart3IsPressed = false;
 
-class _HomeScreenState extends State<HomeScreen> {
-  bool heart1IsPressed = false;
-  bool heart2IsPressed = false;
-  bool heart3IsPressed = false;
-
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: NestedScrollView(
-          headerSliverBuilder:
-              (BuildContext context, bool innerBoxIsScrolled) => [
-            _buildSliverAppBar(),
-          ],
-          body: _buildBody(),
-        ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
-      ),
-    );
-  }
-
-  SliverAppBar _buildSliverAppBar() {
-    return SliverAppBar(
-      snap: true,
-      floating: true,
-      automaticallyImplyLeading: false,
-      toolbarHeight: Checkbox.width * 4.5,
-      elevation: 0,
-      backgroundColor: Colors.white,
-      titleSpacing: double.minPositive,
-      title: Container(
-        margin: const EdgeInsets.only(
-          right: Checkbox.width / 2,
-          left: Checkbox.width * 1.2,
-          top: Checkbox.width / 1.6,
-        ),
-        height: Checkbox.width * 2.7,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: TextField(
-          decoration: InputDecoration(
-            prefixIcon: Container(
-              margin: const EdgeInsets.all(Checkbox.width / 1.3),
-              child: SvgPicture.asset(
-                'assets/icons/Search Icon.svg',
-                fit: BoxFit.fill,
-              ),
-            ),
-            hintText: 'Search product',
-            hintStyle: const TextStyle(
-              fontSize: 17,
-              color: Colors.black45,
-              fontWeight: FontWeight.bold,
-              fontFamily: "muli",
-            ),
-            border: InputBorder.none,
-          ),
-        ),
-      ),
-      actions: [
-        Container(
-          height: 46,
-          width: 46,
-          margin: const EdgeInsets.only(top: Checkbox.width),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.grey.shade200,
-          ),
-          alignment: Alignment.center,
-          child: SvgPicture.asset(
-            'assets/icons/Cart Icon.svg',
-            width: Checkbox.width * 1.1,
-            height: Checkbox.width * 1.1,
-          ),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Container(
-          height: 46,
-          width: 46,
-          margin: const EdgeInsets.only(
-            right: Checkbox.width * 1.1,
-            left: Checkbox.width / 10,
-            top: Checkbox.width,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            shape: BoxShape.circle,
-          ),
-          alignment: Alignment.center,
-          child: badges.Badge(
-            position: badges.BadgePosition.custom(
-                start: Checkbox.width, bottom: Checkbox.width),
-            badgeContent: const Text("3",
-                style: TextStyle(
-                    color: Colors.white, fontSize: Checkbox.width / 1.5)),
-            child: SvgPicture.asset(
-              'assets/icons/Bell.svg',
-              width: Checkbox.width * 1.25,
-              height: Checkbox.width * 1.25,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildBody() {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -259,93 +153,93 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemImagePath: "assets/images/Image Popular Product 3.png",
                   heartIsPressed: heart3IsPressed,
                 ),
-            Container(
-              padding: const EdgeInsets.only(
-                left: Checkbox.width,
-                top: Checkbox.width / 2.5,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    width: Checkbox.width * 8.25,
-                    height: Checkbox.width * 8.25,
-                    padding: const EdgeInsets.all(Checkbox.width),
-                    decoration: ShapeDecoration(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
-                      color: Colors.grey.shade200,
-                    ),
-                    child: const Image(
-                      fit: BoxFit.scaleDown,
-                      image: AssetImage(
-                        "assets/images/Image Popular Product 3.png",
-                      ),
-                    ),
+                Container(
+                  padding: const EdgeInsets.only(
+                    left: Checkbox.width,
+                    top: Checkbox.width / 2.5,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Column(
                     children: [
-                      const SizedBox(
-                        width: Checkbox.width * 8,
-                        child: Text(
-                          "Gloves Omega and Polygon joie Kids Bike Helmet",
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            fontFamily: "muli",
+                      Container(
+                        width: Checkbox.width * 8.25,
+                        height: Checkbox.width * 8.25,
+                        padding: const EdgeInsets.all(Checkbox.width),
+                        decoration: ShapeDecoration(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                          color: Colors.grey.shade200,
+                        ),
+                        child: const Image(
+                          fit: BoxFit.scaleDown,
+                          image: AssetImage(
+                            "assets/images/Image Popular Product 3.png",
+                          ),
                         ),
                       ),
-                      SizedBox(
-                        width: Checkbox.width * 8.5,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              "\$36.99",
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            width: Checkbox.width * 8,
+                            child: Text(
+                              "Gloves Omega and Polygon joie Kids Bike Helmet",
                               style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.orange,
-                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600,
                                 fontFamily: "muli",
                               ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            Container(
-                              width: Checkbox.width * 1.5,
-                              height: Checkbox.width * 1.5,
-                              decoration: ShapeDecoration(
-                                shape: const CircleBorder(),
-                                color: heart1IsPressed
-                                    ? const Color(0xD3E9CACA)
-                                    : Colors.grey.shade200,
-                              ),
-                              child: IconButton(
-                                // color: Colors.red,
-                                onPressed: () {
-                                  setState(() {
-                                    heart1IsPressed = !heart1IsPressed;
-                                  });
-                                },
-                                icon: SvgPicture.asset(
-                                  "assets/icons/Heart Icon_2.svg",
-                                  color: heart1IsPressed ? Colors.red : Colors.grey,
+                          ),
+                          SizedBox(
+                            width: Checkbox.width * 8.5,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  "\$36.99",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.orange,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "muli",
+                                  ),
                                 ),
-                              ),
+                                Container(
+                                  width: Checkbox.width * 1.5,
+                                  height: Checkbox.width * 1.5,
+                                  decoration: ShapeDecoration(
+                                    shape: const CircleBorder(),
+                                    color: heart1IsPressed
+                                        ? const Color(0xD3E9CACA)
+                                        : Colors.grey.shade200,
+                                  ),
+                                  child: IconButton(
+                                    // color: Colors.red,
+                                    onPressed: () {
+                                      setState(() {
+                                        heart1IsPressed = !heart1IsPressed;
+                                      });
+                                    },
+                                    icon: SvgPicture.asset(
+                                      "assets/icons/Heart Icon_2.svg",
+                                      color: heart1IsPressed ? Colors.red : Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
-            ),
+                ),
               ],
             ),
           ),
@@ -353,37 +247,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Widget _buildBottomNavigationBar() {
-    return Container(
-      padding: const EdgeInsets.all(16.05),
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(40),
-          topRight: Radius.circular(40),
-        ),
-        color: Colors.white,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset('assets/icons/Shop Icon.svg')),
-          IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset('assets/icons/Heart Icon.svg')),
-          IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset('assets/icons/Chat bubble Icon.svg')),
-          IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset('assets/icons/User Icon.svg')),
-        ],
-      ),
-    );
-  }
-
   Widget _buildCategoryItem(String iconPath, String title) {
     return Column(
       children: [
@@ -621,5 +484,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }

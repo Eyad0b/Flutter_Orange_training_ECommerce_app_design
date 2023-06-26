@@ -30,6 +30,7 @@ class _BodyState extends State<Body> {
       children: [
         Container(
           margin: EdgeInsets.symmetric(horizontal: width * .06),
+          color: const Color(0xF2F3F6FF),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
