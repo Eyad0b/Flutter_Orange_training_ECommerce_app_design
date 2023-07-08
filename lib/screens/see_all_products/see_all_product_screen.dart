@@ -3,20 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:untitled1/screens/profile/profile_screen.dart';
+import 'package:untitled1/screens/see_all_products/components/body.dart';
 
-import '../home/components/body.dart';
-
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SeeAllProductScreen extends StatefulWidget {
+  const SeeAllProductScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SeeAllProductScreen> createState() => _SeeAllProductScreenState();
 }
 
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SeeAllProductScreenState extends State<SeeAllProductScreen> {
   bool heart1IsPressed = false;
   bool heart2IsPressed = false;
   bool heart3IsPressed = false;
@@ -160,19 +157,11 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () {},
               icon: SvgPicture.asset('assets/icons/Chat bubble Icon.svg')),
           IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ProfileScreen()),
-                );
-              },
+              onPressed: () {},
               icon: SvgPicture.asset('assets/icons/User Icon.svg')),
         ],
       ),
     );
   }
-
-
 
 }

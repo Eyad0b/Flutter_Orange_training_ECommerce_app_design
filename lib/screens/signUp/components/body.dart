@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:untitled1/const_values.dart';
+import 'package:untitled1/general.dart';
 import 'package:untitled1/screens/completeProfile/complete_profile_screen.dart';
 
 class Body extends StatefulWidget {
@@ -9,11 +11,26 @@ class Body extends StatefulWidget {
   State<Body> createState() => _BodyState();
 }
 
+
+
 class _BodyState extends State<Body> {
+  bool showPassword = false;
+  bool showConfirmPassword = false;
+  TextEditingController passwordTextEditingController = TextEditingController();
+  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController confirmPasswordTextEditingController =
+      TextEditingController();
+  double? height;
+  double? width;
+  bool showPasswordNotEqualError = false;
+  bool showEmailEmptyError = false;
+  bool showPasswordEmptyError = false;
+  bool showConfirmPassEmptyError = false;
+
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
 
     return SingleChildScrollView(
       child: Column(
@@ -21,7 +38,7 @@ class _BodyState extends State<Body> {
         children: [
           Container(
             alignment: Alignment.center,
-            height: height * .2,
+            height: height! * .2,
             padding: const EdgeInsets.only(
                 top: Checkbox.width / 1.2, bottom: Checkbox.width / 3),
             child: const Column(
@@ -36,8 +53,7 @@ class _BodyState extends State<Body> {
                     fontFamily: "muli",
                   ),
                 ),
-                Text(
-                    "Complete your details or continue\nwith social media",
+                Text("Complete your details or continue\nwith social media",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black45,
@@ -49,23 +65,26 @@ class _BodyState extends State<Body> {
             ),
           ),
           Container(
-            height: height * .536754,
+            height: height! * .536754,
             padding: EdgeInsets.only(
                 top: Checkbox.width * 2,
-                left: width * .06,
-                right: width * .06),
+                left: width! * .06,
+                right: width! * .06),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: Checkbox.width * 3.7,
+                  height: 65,
                   child: TextField(
+                    controller: emailTextEditingController,
                     decoration: InputDecoration(
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your email',
                       labelText: 'Email',
+                      errorText:
+                          showEmailEmptyError ? 'Value Can\'t Be Empty' : null,
                       labelStyle: const TextStyle(
                         fontSize: 17,
                         color: Colors.black45,
@@ -115,15 +134,22 @@ class _BodyState extends State<Body> {
                 ),
                 const SizedBox(height: Checkbox.width * 1.65),
                 SizedBox(
-                  height: Checkbox.width * 3.7,
+                  height: 65,
                   child: TextField(
+                    obscureText: true, // for hide text
+                    controller: passwordTextEditingController,
                     decoration: InputDecoration(
                       focusColor: const Color(0xFFFD7643),
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your password',
                       labelText: 'Password',
+                      errorText: showPasswordEmptyError
+                          ? 'Value Can\'t Be Empty'
+                          : showPasswordNotEqualError
+                              ? 'The password is not equal'
+                              : null,
                       labelStyle: const TextStyle(
                         fontSize: 17,
                         color: Colors.black45,
@@ -135,15 +161,15 @@ class _BodyState extends State<Body> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(27),
                         ),
-                        borderSide: BorderSide(
-                            color: Color(0xFFFD7643), width: 2),
+                        borderSide:
+                            BorderSide(color: Color(0xFFFD7643), width: 2),
                       ),
                       // Make labelText visible all time
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.2),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.2),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: SvgPicture.asset(
@@ -162,23 +188,30 @@ class _BodyState extends State<Body> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
                           ),
-                          borderSide: BorderSide(
-                              color: Color(0xFFFD7643), width: 2)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFFD7643), width: 2)),
                     ),
                     cursorColor: const Color(0xFFFD7643),
                   ),
                 ),
                 const SizedBox(height: Checkbox.width * 1.65),
                 SizedBox(
-                  height: Checkbox.width * 3.7,
+                  height: 65,
                   child: TextField(
+                    obscureText: true, // for hide text
+                    controller: confirmPasswordTextEditingController,
                     decoration: InputDecoration(
                       focusColor: const Color(0xFFFD7643),
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Re-enter your password',
                       labelText: 'Confirm Password',
+                      errorText: showConfirmPassEmptyError
+                          ? 'Value Can\'t Be Empty'
+                          : showPasswordNotEqualError
+                              ? 'The password is not equal'
+                              : null,
                       labelStyle: const TextStyle(
                         fontSize: 17,
                         color: Colors.black45,
@@ -190,15 +223,15 @@ class _BodyState extends State<Body> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(27),
                         ),
-                        borderSide: BorderSide(
-                            color: Color(0xFFFD7643), width: 2),
+                        borderSide:
+                            BorderSide(color: Color(0xFFFD7643), width: 2),
                       ),
                       // Make labelText visible all time
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.2),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.2),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: SvgPicture.asset(
@@ -217,8 +250,8 @@ class _BodyState extends State<Body> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
                           ),
-                          borderSide: BorderSide(
-                              color: Color(0xFFFD7643), width: 2)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFFD7643), width: 2)),
                     ),
                     cursorColor: const Color(0xFFFD7643),
                   ),
@@ -226,11 +259,39 @@ class _BodyState extends State<Body> {
                 const SizedBox(height: Checkbox.width * 2.2),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const CompleteProfileScreen()),
-                    );
+                    emailTextEditingController.text.isEmpty
+                        ? showEmailEmptyError = true
+                        : showEmailEmptyError = false;
+                    passwordTextEditingController.text.isEmpty
+                        ? showPasswordEmptyError = true
+                        : showPasswordEmptyError = false;
+                    confirmPasswordTextEditingController.text.isEmpty
+                        ? showConfirmPassEmptyError = true
+                        : showConfirmPassEmptyError = false;
+                    passwordTextEditingController.text ==
+                            confirmPasswordTextEditingController.text
+                        ? showPasswordNotEqualError = false
+                        : showPasswordNotEqualError = true;
+                    showPasswordNotEqualError == false &&
+                            showEmailEmptyError == false &&
+                            showPasswordEmptyError == false &&
+                            showConfirmPassEmptyError == false
+                        ? {
+                            // General.savePrefString(ConsValues.EMAIL,
+                            //     emailTextEditingController.text),
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CompleteProfileScreen(
+                                  email: emailTextEditingController.text,
+                                  passsword: passwordTextEditingController.text,
+                                ),
+                              ),
+                                // createUserWithEmailAndPassword(),
+                            ),
+                          }
+                        : null;
+                    setState(() {});
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFD7643),
@@ -240,7 +301,7 @@ class _BodyState extends State<Body> {
                         Radius.circular(23),
                       ),
                     ),
-                    fixedSize: Size(width * .86, Checkbox.width * 3.2),
+                    fixedSize: Size(width! * .86, Checkbox.width * 3.2),
                   ),
                   child: const Text(
                     "Continue",
@@ -257,16 +318,17 @@ class _BodyState extends State<Body> {
           ),
           Container(
             // color: Colors.purple,
-            height: height * .15,
-            padding: EdgeInsets.only(top: height * .035,bottom: height * .002),
+            height: height! * .15,
+            padding:
+                EdgeInsets.only(top: height! * .035, bottom: height! * .002),
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: height * .07,
-                  margin: EdgeInsets.only(
-                      right: width * .23, left: width * .23),
+                  height: height! * .07,
+                  margin:
+                      EdgeInsets.only(right: width! * .23, left: width! * .23),
                   alignment: Alignment.bottomCenter,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

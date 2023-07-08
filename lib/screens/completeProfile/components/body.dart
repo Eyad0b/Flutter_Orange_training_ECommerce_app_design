@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
+import '../../../services/signUp_service.dart';
 import '../../welcomeBack/welcome_back_screen.dart';
 
 class Body extends StatefulWidget {
-  const Body({super.key});
+  var email, passsword;
+
+  Body({required this.email, required this.passsword, super.key});
 
   @override
   State<Body> createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
+  TextEditingController firstNameTextEditingController =
+      TextEditingController();
+  TextEditingController lastNameTextEditingController = TextEditingController();
+  TextEditingController addressTextEditingController = TextEditingController();
+  TextEditingController phoneNumberTextEditingController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -37,8 +48,7 @@ class _BodyState extends State<Body> {
                     fontFamily: "muli",
                   ),
                 ),
-                Text(
-                    "Complete your details or continue\nwith social media",
+                Text("Complete your details or continue\nwith social media",
                     style: TextStyle(
                       fontSize: 15,
                       color: Colors.black45,
@@ -61,10 +71,11 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: Checkbox.width * 3.7,
                   child: TextField(
+                    controller: firstNameTextEditingController,
                     decoration: InputDecoration(
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your first name',
                       labelText: 'First Name',
                       labelStyle: const TextStyle(
@@ -87,8 +98,8 @@ class _BodyState extends State<Body> {
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.1),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.1),
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: SvgPicture.asset(
@@ -120,11 +131,12 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: Checkbox.width * 3.7,
                   child: TextField(
+                    controller: lastNameTextEditingController,
                     decoration: InputDecoration(
                       focusColor: const Color(0xFFFD7643),
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your last name',
                       labelText: 'Last Name',
                       labelStyle: const TextStyle(
@@ -138,15 +150,15 @@ class _BodyState extends State<Body> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(27),
                         ),
-                        borderSide: BorderSide(
-                            color: Color(0xFFFD7643), width: 2),
+                        borderSide:
+                            BorderSide(color: Color(0xFFFD7643), width: 2),
                       ),
                       // Make labelText visible all time
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.1),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.1),
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: SvgPicture.asset(
@@ -165,8 +177,8 @@ class _BodyState extends State<Body> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
                           ),
-                          borderSide: BorderSide(
-                              color: Color(0xFFFD7643), width: 2)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFFD7643), width: 2)),
                     ),
                     cursorColor: const Color(0xFFFD7643),
                   ),
@@ -175,11 +187,12 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: Checkbox.width * 3.7,
                   child: TextField(
+                    controller: phoneNumberTextEditingController,
                     decoration: InputDecoration(
                       focusColor: const Color(0xFFFD7643),
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your phone number',
                       labelText: 'Phone Number',
                       labelStyle: const TextStyle(
@@ -193,15 +206,15 @@ class _BodyState extends State<Body> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(27),
                         ),
-                        borderSide: BorderSide(
-                            color: Color(0xFFFD7643), width: 2),
+                        borderSide:
+                            BorderSide(color: Color(0xFFFD7643), width: 2),
                       ),
                       // Make labelText visible all time
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.2),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.2),
                         child: Padding(
                           padding: const EdgeInsets.all(7.0),
                           child: SvgPicture.asset(
@@ -220,8 +233,8 @@ class _BodyState extends State<Body> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
                           ),
-                          borderSide: BorderSide(
-                              color: Color(0xFFFD7643), width: 2)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFFD7643), width: 2)),
                     ),
                     cursorColor: const Color(0xFFFD7643),
                   ),
@@ -230,11 +243,12 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: Checkbox.width * 3.7,
                   child: TextField(
+                    controller: addressTextEditingController,
                     decoration: InputDecoration(
                       focusColor: const Color(0xFFFD7643),
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your address',
                       labelText: 'Address',
                       labelStyle: const TextStyle(
@@ -248,15 +262,15 @@ class _BodyState extends State<Body> {
                         borderRadius: BorderRadius.all(
                           Radius.circular(27),
                         ),
-                        borderSide: BorderSide(
-                            color: Color(0xFFFD7643), width: 2),
+                        borderSide:
+                            BorderSide(color: Color(0xFFFD7643), width: 2),
                       ),
                       // Make labelText visible all time
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.2),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.2),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: SvgPicture.asset(
@@ -275,19 +289,54 @@ class _BodyState extends State<Body> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
                           ),
-                          borderSide: BorderSide(
-                              color: Color(0xFFFD7643), width: 2)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFFD7643), width: 2)),
                     ),
                     cursorColor: const Color(0xFFFD7643),
                   ),
                 ),
                 const SizedBox(height: Checkbox.width * 2.2),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await Provider.of<SignUpService>(context, listen: false)
+                        .createUserWithEmailAndPassword(
+                      First_name: firstNameTextEditingController.text,
+                      Last_name: lastNameTextEditingController.text,
+                      password: widget.passsword,
+                      Email: widget.email,
+                      Phone: phoneNumberTextEditingController.text,
+                      Address: addressTextEditingController.text,
+                    );
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const WelcomeBackScreen()),
+                    );
+                    showDialog<void>(
+                      context: context,
+                      barrierDismissible: false, // user must tap button!
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Sign Up Problem'),
+                          content: const SingleChildScrollView(
+                            child: ListBody(
+                              children: <Widget>[
+                                Text('This is a demo alert dialog.'),
+                                Text(
+                                    'Would you like to approve of this message?'),
+                              ],
+                            ),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('Approve'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -315,7 +364,7 @@ class _BodyState extends State<Body> {
           ),
           Container(
             height: height * .087,
-            padding: EdgeInsets.only(top: height * .028,bottom: height * .004),
+            padding: EdgeInsets.only(top: height * .028, bottom: height * .004),
             alignment: Alignment.center,
             child: const Text(
               textAlign: TextAlign.center,

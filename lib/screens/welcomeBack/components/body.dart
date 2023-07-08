@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:untitled1/screens/forgotPassword/forgot_passorwd_screen.dart';
 import 'package:untitled1/screens/logInSuccess/login_success_screen.dart';
 import 'package:untitled1/screens/signUp/signup_screen.dart';
+
+import '../../../services/logIn_provider.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -13,6 +17,8 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   bool isChecked = false;
+  TextEditingController emailTextEditingController = TextEditingController();
+  TextEditingController passwordTextEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,18 +61,17 @@ class _BodyState extends State<Body> {
           Container(
             height: height * .536754,
             padding: EdgeInsets.only(
-                top: Checkbox.width * 2,
-                left: width * .06,
-                right: width * .06),
+                top: Checkbox.width * 2, left: width * .06, right: width * .06),
             child: Column(
               children: [
                 SizedBox(
                   height: Checkbox.width * 3.8,
                   child: TextField(
+                    controller: emailTextEditingController,
                     decoration: InputDecoration(
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your email',
                       labelText: 'Email',
                       labelStyle: const TextStyle(
@@ -120,11 +125,12 @@ class _BodyState extends State<Body> {
                 SizedBox(
                   height: Checkbox.width * 3.8,
                   child: TextField(
+                    controller: passwordTextEditingController,
                     decoration: InputDecoration(
                       focusColor: const Color(0xFFFD7643),
                       // padding around hint
-                      contentPadding: const EdgeInsets.only(
-                          left: 35, bottom: 23, top: 23),
+                      contentPadding:
+                          const EdgeInsets.only(left: 35, bottom: 23, top: 23),
                       hintText: 'Enter your password',
                       labelText: 'Password',
                       labelStyle: const TextStyle(
@@ -139,14 +145,14 @@ class _BodyState extends State<Body> {
                           Radius.circular(27),
                         ),
                         borderSide:
-                        BorderSide(color: Color(0xFFFD7643), width: 2),
+                            BorderSide(color: Color(0xFFFD7643), width: 2),
                       ),
                       // Make labelText visible all time
                       floatingLabelBehavior: FloatingLabelBehavior.always,
                       // Add icon in right side
                       suffixIcon: Container(
-                        padding: const EdgeInsets.only(
-                            right: Checkbox.width * 1.2),
+                        padding:
+                            const EdgeInsets.only(right: Checkbox.width * 1.2),
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: SvgPicture.asset(
@@ -165,8 +171,8 @@ class _BodyState extends State<Body> {
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
                           ),
-                          borderSide: BorderSide(
-                              color: Color(0xFFFD7643), width: 2)),
+                          borderSide:
+                              BorderSide(color: Color(0xFFFD7643), width: 2)),
                     ),
                     cursorColor: const Color(0xFFFD7643),
                   ),
@@ -207,7 +213,8 @@ class _BodyState extends State<Body> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ForgetPasswordScreen()),
+                              builder: (context) =>
+                                  const ForgetPasswordScreen()),
                         );
                       },
                       child: const Text(
@@ -225,12 +232,45 @@ class _BodyState extends State<Body> {
                 ),
                 const SizedBox(height: Checkbox.width * 1.15),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await Provider.of<SignInService>(context, listen: false)
+                        .signInWithEmailAndPassword(
+                      password: passwordTextEditingController.text,
+                      Email: emailTextEditingController.text,
+                    );
+                    await Provider.of<SignInService>(context, listen: false)
+                        .signOut();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LogInSuccessScreen()),
                     );
+                    // showDialog<void>(
+                    //   context: context,
+                    //   barrierDismissible: false, // user must tap button!
+                    //   builder: (BuildContext context) {
+                    //     return AlertDialog(
+                    //       title: const Text('Sign Up Problem'),
+                    //       content: const SingleChildScrollView(
+                    //         child: ListBody(
+                    //           children: <Widget>[
+                    //             Text('This is a demo alert dialog.'),
+                    //             Text(
+                    //                 'Would you like to approve of this message?'),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //       actions: <Widget>[
+                    //         TextButton(
+                    //           child: const Text('Approve'),
+                    //           onPressed: () {
+                    //             Navigator.of(context).pop();
+                    //           },
+                    //         ),
+                    //       ],
+                    //     );
+                    //   },
+                    // );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFD7643),

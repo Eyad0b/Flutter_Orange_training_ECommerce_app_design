@@ -1,8 +1,63 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../details/details_screen.dart';
+import 'package:http/http.dart' as http;
 
+import '../../see_all_products/see_all_product_screen.dart';
+// List<Product> listAlbum = [];
+
+// Make network request
+//Covert http response inside album
+Future <List<Product>> fetchProduct() async {
+  // listAlbum = [];
+  final response = await http.get(
+    Uri.parse("https://fakestoreapi.com/products/"),
+  );
+
+  if (response.statusCode == 200) {
+    var decodeData = json.decode(response.body) as List<dynamic>;
+    List<Product> products = decodeData.map((json) => Product.fromJson(json)).toList();
+    return products;
+  } else {
+    throw Exception("Field load Album");
+  }
+}
+
+// Create album class (model)
+class Product {
+  // final int id;
+  final num price; //double
+  final String title;
+  final String description;
+  final String category;
+  final String image;
+
+
+
+
+  const Product({
+    // required this.id,
+    required this.price,
+    required this.title,
+    required this.description,
+    required this.category,
+    required this.image,
+  });
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      // id: json['id'],
+      price: json['price'],
+      title: json['title'],
+      description: json['description'],
+      category: json['category'],
+      image: json['image'],
+    );
+  }
+}
 class Body extends StatefulWidget {
   const Body({super.key});
 
@@ -14,6 +69,15 @@ bool heart2IsPressed = false;
 bool heart3IsPressed = false;
 
 class _BodyState extends State<Body> {
+  late Future<List<Product>> futureProducts;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    futureProducts = fetchProduct();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -132,115 +196,131 @@ class _BodyState extends State<Body> {
             // color: Colors.lime,
             height: Checkbox.width * 15,
             width: double.infinity,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                _buildPopularProductItem(
-                  title: "Wireless Controller for PS4",
-                  price: "64.99",
-                  itemImagePath: "assets/images/ps4_console_white_1.png",
-                  heartIsPressed: heart1IsPressed,
-                ),
-                _buildPopularProductItem(
-                  title: "Nike Sport White - Man Pant",
-                  price: "50.5",
-                  itemImagePath: "assets/images/Image Popular Product 2.png",
-                  heartIsPressed: heart2IsPressed,
-                ),
-                _buildPopularProductItem(
-                  title: "Gloves Omega and Polygon joie Kids Bike Helmet",
-                  price: "36.99",
-                  itemImagePath: "assets/images/Image Popular Product 3.png",
-                  heartIsPressed: heart3IsPressed,
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                    left: Checkbox.width,
-                    top: Checkbox.width / 2.5,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        width: Checkbox.width * 8.25,
-                        height: Checkbox.width * 8.25,
-                        padding: const EdgeInsets.all(Checkbox.width),
-                        decoration: ShapeDecoration(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          color: Colors.grey.shade200,
-                        ),
-                        child: const Image(
-                          fit: BoxFit.scaleDown,
-                          image: AssetImage(
-                            "assets/images/Image Popular Product 3.png",
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            width: Checkbox.width * 8,
-                            child: Text(
-                              "Gloves Omega and Polygon joie Kids Bike Helmet",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: "muli",
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          SizedBox(
-                            width: Checkbox.width * 8.5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  "\$36.99",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.orange,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "muli",
-                                  ),
-                                ),
-                                Container(
-                                  width: Checkbox.width * 1.5,
-                                  height: Checkbox.width * 1.5,
-                                  decoration: ShapeDecoration(
-                                    shape: const CircleBorder(),
-                                    color: heart1IsPressed
-                                        ? const Color(0xD3E9CACA)
-                                        : Colors.grey.shade200,
-                                  ),
-                                  child: IconButton(
-                                    // color: Colors.red,
-                                    onPressed: () {
-                                      setState(() {
-                                        heart1IsPressed = !heart1IsPressed;
-                                      });
-                                    },
-                                    icon: SvgPicture.asset(
-                                      "assets/icons/Heart Icon_2.svg",
-                                      color: heart1IsPressed ? Colors.red : Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            child:
+            FutureBuilder<List<Product>>(
+              builder: (context, snapshot) {
+                // assignment what is a snapshot
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: int.parse(snapshot.data!.length.toString()),
+                    itemBuilder: (BuildContext context, int index) {
+                      return _buildPopularProductItem(
+                        title: snapshot.data![index].title,
+                        price: snapshot.data![index].price.toString(),
+                        itemImagePath: snapshot.data![index].image,
+                        heartIsPressed: heart2IsPressed,
+                      );
+                    },
+                    // children: [
+                    //
+                    //   _buildPopularProductItem(
+                    //     title: "Gloves Omega and Polygon joie Kids Bike Helmet",
+                    //     price: "36.99",
+                    //     itemImagePath: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                    //     heartIsPressed: heart3IsPressed,
+                    //   ),
+                      // Container(
+                      //   padding: const EdgeInsets.only(
+                      //     left: Checkbox.width,
+                      //     top: Checkbox.width / 2.5,
+                      //   ),
+                      //   child: Column(
+                      //     children: [
+                      //       Container(
+                      //         width: Checkbox.width * 8.25,
+                      //         height: Checkbox.width * 8.25,
+                      //         padding: const EdgeInsets.all(Checkbox.width),
+                      //         decoration: ShapeDecoration(
+                      //           shape: const RoundedRectangleBorder(
+                      //             borderRadius: BorderRadius.all(
+                      //               Radius.circular(15),
+                      //             ),
+                      //           ),
+                      //           color: Colors.grey.shade200,
+                      //         ),
+                      //         child: const Image(
+                      //           fit: BoxFit.scaleDown,
+                      //           image: AssetImage(
+                      //             "assets/images/Image Popular Product 3.png",
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       Column(
+                      //         crossAxisAlignment: CrossAxisAlignment.start,
+                      //         children: [
+                      //           const SizedBox(
+                      //             width: Checkbox.width * 8,
+                      //             child: Text(
+                      //               "Gloves Omega and Polygon joie Kids Bike Helmet",
+                      //               style: TextStyle(
+                      //                 fontSize: 15,
+                      //                 color: Colors.black,
+                      //                 fontWeight: FontWeight.w600,
+                      //                 fontFamily: "muli",
+                      //               ),
+                      //               maxLines: 2,
+                      //               overflow: TextOverflow.ellipsis,
+                      //             ),
+                      //           ),
+                      //           SizedBox(
+                      //             width: Checkbox.width * 8.5,
+                      //             child: Row(
+                      //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //               children: [
+                      //                 const Text(
+                      //                   "\$36.99",
+                      //                   style: TextStyle(
+                      //                     fontSize: 20,
+                      //                     color: Colors.orange,
+                      //                     fontWeight: FontWeight.bold,
+                      //                     fontFamily: "muli",
+                      //                   ),
+                      //                 ),
+                      //                 Container(
+                      //                   width: Checkbox.width * 1.5,
+                      //                   height: Checkbox.width * 1.5,
+                      //                   decoration: ShapeDecoration(
+                      //                     shape: const CircleBorder(),
+                      //                     color: heart1IsPressed
+                      //                         ? const Color(0xD3E9CACA)
+                      //                         : Colors.grey.shade200,
+                      //                   ),
+                      //                   child: IconButton(
+                      //                     // color: Colors.red,
+                      //                     onPressed: () {
+                      //                       setState(() {
+                      //                         heart1IsPressed = !heart1IsPressed;
+                      //                       });
+                      //                     },
+                      //                     icon: SvgPicture.asset(
+                      //                       "assets/icons/Heart Icon_2.svg",
+                      //                       color: heart1IsPressed ? Colors.red : Colors.grey,
+                      //                     ),
+                      //                   ),
+                      //                 ),
+                      //               ],
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                    // ],
+                  );
+                }  else if (snapshot.hasError) {
+                  print(snapshot.error);
+                  return Text(snapshot.error.toString());
+                }else{
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.red,
+                    ),
+                  );
+                }
+              },
+              future: futureProducts,
             ),
           ),
         ],
@@ -313,7 +393,13 @@ class _BodyState extends State<Body> {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SeeAllProductScreen()),
+              );
+            },
             child: const Text(
               "See More",
               style: TextStyle(
@@ -410,11 +496,9 @@ class _BodyState extends State<Body> {
               ),
               color: Colors.grey.shade200,
             ),
-            child: Image(
+            child: Image.network(
+              itemImagePath,
               fit: BoxFit.scaleDown,
-              image: AssetImage(
-                itemImagePath,
-              ),
             ),
           ),
           Column(

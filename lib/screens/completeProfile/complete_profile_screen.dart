@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../completeProfile/components/body.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+  var email,passsword;
+  CompleteProfileScreen({required this.email,required this.passsword,super.key});
 
   @override
   State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
@@ -24,7 +25,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           backgroundColor: Colors.white,
           elevation: 0,
         ),
-        body: const Body(),
+        body: Body(email: widget.email,passsword: widget.passsword),
       ),
     );
   }
